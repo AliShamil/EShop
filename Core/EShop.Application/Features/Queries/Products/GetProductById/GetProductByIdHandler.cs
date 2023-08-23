@@ -1,0 +1,30 @@
+﻿using EShop.Application.Features.Queries.Products.GetAllProducts;
+using EShop.Application.Repositories.ProductRepository;
+using EShop.Domain.Entities;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EShop.Application.Features.Queries.Products.GetProductById
+{
+    public class GetProductByIdHandler : IRequestHandler<GetProductByIdQueryRequest, GetProductByIdQueryResponse>
+    {
+        private readonly IProductReadRepository repository;
+
+        public GetProductByIdHandler(IProductReadRepository repository)
+        {
+            this.repository = repository;
+        }
+
+        
+
+        public async Task<GetProductByIdQueryResponse> Handle(GetProductByIdQueryRequest request, CancellationToken cancellationToken)
+        {
+            var product = await repository.GetAsync(request.ProductId);
+            return new() { ProductResponse = product};
+        }
+    }
+}
