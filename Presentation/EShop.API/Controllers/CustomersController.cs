@@ -1,8 +1,8 @@
-﻿using EShop.Application.Features.Commands.Products.AddProduct;
-using EShop.Application.Features.Commands.Products.DeleteProduct;
-using EShop.Application.Features.Commands.Products.UpdateProduct;
-using EShop.Application.Features.Queries.Products.GetAllProducts;
-using EShop.Application.Features.Queries.Products.GetProductById;
+﻿using EShop.Application.Features.Commands.Customers.AddCustomer;
+using EShop.Application.Features.Commands.Customers.DeleteCustomer;
+using EShop.Application.Features.Commands.Customers.UpdateCustomer;
+using EShop.Application.Features.Queries.Customers.GetAllCustomers;
+using EShop.Application.Features.Queries.Customers.GetCustomerById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -11,17 +11,17 @@ namespace EShop.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class CustomersController : Controller
     {
         private readonly IMediator mediator;
 
-        public ProductsController(IMediator mediator)
+        public CustomersController(IMediator mediator)
         {
             this.mediator = mediator;
         }
 
         [HttpGet("getall")]
-        public async Task<IActionResult> GetAll([FromQuery] GetProductsQueryRequest request)
+        public async Task<IActionResult> GetAll([FromQuery] GetCustomersQueryRequest request)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace EShop.API.Controllers
         }
 
         [HttpGet("getbyid")]
-        public async Task<IActionResult> GetById([FromQuery] GetProductByIdQueryRequest request)
+        public async Task<IActionResult> GetById([FromQuery] GetCustomerByIdQueryRequest request)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace EShop.API.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddProduct([FromBody] AddProductCommandRequest request)
+        public async Task<IActionResult> AddProduct([FromBody] AddCustomerCommandRequest request)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace EShop.API.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> UpdateProduct([FromQuery] UpdateProductCommandRequest request)
+        public async Task<IActionResult> UpdateProduct([FromQuery] UpdateCustomerCommandRequest request)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace EShop.API.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> DeleteProduct([FromQuery] DeleteProductCommandRequest request)
+        public async Task<IActionResult> DeleteProduct([FromQuery] DeleteCustomerCommandRequest request)
         {
             try
             {

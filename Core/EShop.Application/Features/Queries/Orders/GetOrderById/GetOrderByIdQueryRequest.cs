@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EShop.Application.Features.Queries.Products.GetProductById
+namespace EShop.Application.Features.Queries.Orders.GetOrderById
 {
-    public class GetProductByIdQueryRequest : IRequest<GetProductByIdQueryResponse>
+    public class GetOrderByIdQueryRequest : IRequest<GetOrderByIdQueryResponse>
     {
         public string Id { get; set; }
     }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EShop.Application.Features.Commands.AddProduct
+namespace EShop.Application.Features.Commands.Orders.AddOrder
 {
-    public class AddProductCommandResponse
+    public class AddOrderCommandResponse
     {
     }
 }

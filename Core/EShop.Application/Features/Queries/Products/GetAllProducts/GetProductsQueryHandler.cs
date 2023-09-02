@@ -1,4 +1,5 @@
-﻿using EShop.Application.Repositories.ProductRepository;
+﻿using EShop.Application.Repositories;
+using EShop.Application.Repositories.ProductRepository;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,16 @@ namespace EShop.Application.Features.Queries.Products.GetAllProducts
 {
     public class GetProductsQueryHandler : IRequestHandler<GetProductsQueryRequest, GetProductsQueryResponse>
     {
-        private readonly IProductReadRepository repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GetProductsQueryHandler(IProductReadRepository repository)
+        public GetProductsQueryHandler(IUnitOfWork unitOfWork)
         {
-            this.repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<GetProductsQueryResponse> Handle(GetProductsQueryRequest request, CancellationToken cancellationToken)
         {
-            var products = repository.GetAll(tracking: false);
+            var products = _unitOfWork.ProductReadRepository.GetAll(tracking: false);
             var totalCount = products.Count();
 
             var selecetedProducts = products
@@ -28,6 +29,7 @@ namespace EShop.Application.Features.Queries.Products.GetAllProducts
                         .Take(request.Size)
                         .Select(p => new
                         {
+                            p.Id,
                             p.Name,
                             p.Price,
                             p.Description,

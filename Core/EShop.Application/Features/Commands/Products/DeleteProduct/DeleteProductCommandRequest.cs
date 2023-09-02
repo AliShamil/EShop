@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EShop.Application.Features.Queries.Products.GetProductById
+namespace EShop.Application.Features.Commands.Products.DeleteProduct
 {
-    public class GetProductByIdQueryRequest : IRequest<GetProductByIdQueryResponse>
+    public class DeleteProductCommandRequest : IRequest<DeleteProductCommandResponse>
     {
         public string Id { get; set; }
     }
